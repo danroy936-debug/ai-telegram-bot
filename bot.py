@@ -19,22 +19,22 @@ ContextTypes,
 filters
 )
 
-=========================
+#=========================
 
 LOGGING
 
-=========================
+#=========================
 
 logging.basicConfig(
 format="%(asctime)s - %(levelname)s - %(message)s",
 level=logging.INFO
 )
 
-=========================
+#=========================
 
 ENV VARIABLES
 
-=========================
+#=========================
 
 BOT_TOKEN = os.getenv("BOT_TOKEN")
 GROQ_API_KEY = os.getenv("GROQ_API_KEY")
@@ -47,20 +47,20 @@ raise ValueError("GROQ_API_KEY is missing")
 
 client = Groq(api_key=GROQ_API_KEY)
 
-=========================
+#=========================
 
 MEMORY
 
-=========================
+#=========================
 
 user_mode = {}
 user_cooldown = {}
 
-=========================
+#=========================
 
 MENU
 
-=========================
+#=========================
 
 def menu():
 return InlineKeyboardMarkup([
@@ -74,11 +74,11 @@ InlineKeyboardButton("📢 Content", callback_data="content")
 ]
 ])
 
-=========================
+#=========================
 
 START
 
-=========================
+#=========================
 
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
@@ -87,11 +87,11 @@ await update.message.reply_text(
     reply_markup=menu()
 )
 
-=========================
+#=========================
 
 BUTTON
 
-=========================
+#=========================
 
 async def button(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
@@ -111,7 +111,7 @@ await query.edit_message_text(
 
 AI FUNCTION
 
-=========================
+#=========================
 
 def ask_ai(text, mode):
 
@@ -143,11 +143,11 @@ response = client.chat.completions.create(
 
 return response.choices[0].message.content
 
-=========================
+#=========================
 
 MESSAGE HANDLER
 
-=========================
+#=========================
 
 async def handle(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
@@ -200,11 +200,11 @@ except Exception as e:
         f"❌ Error:\n{str(e)}"
     )
 
-=========================
+#=========================
 
 MAIN
 
-=========================
+#=========================
 
 def main():
 
